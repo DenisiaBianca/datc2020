@@ -1,0 +1,1 @@
+Software as a Service (Saas) reprezinta un serviciu cloud unde clienții pot accesa aplicații din internet. De exemplu Instagram, Facebook, YouTube.
