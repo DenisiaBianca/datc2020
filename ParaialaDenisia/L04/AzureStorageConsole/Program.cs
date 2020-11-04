@@ -32,27 +32,22 @@ namespace L04
 
             await studentsTable.CreateIfNotExistsAsync(); //creaza tabelul daca nu exista
 
-            await AddNewStudent();      
+            await AddNewStudent();
         }
 
         private static async Task AddNewStudent()
         {
-            var student=new Student("UPT", "2981001350057");
-            student.FirstName="Denisia";
-            student.LastName="Paraiala";
-            student.Email="paraialadenisia@gmail.com";
-            student.PhoneNumber="0727209063";
-            student.Year=3;
-            student.Faculty="AC";
+            var student = new Student("UVT", "2981901380557");
+            student.FirstName = "Denisia";
+            student.LastName = "Paraiala";
+            student.Email = "paraialadenisia@gmail.com";
+            student.PhoneNumber = "0727209063";
+            student.Year = 3;
+            student.Faculty = "AC";
 
-            var insertOperation=TableOperation.Insert(student);
+            var insertOperation = TableOperation.Insert(student);
 
             await studentsTable.ExecuteAsync(insertOperation);
-        }
-
-        private static async Task EditStudent()
-        {
-            var 
         }
     }
 }
