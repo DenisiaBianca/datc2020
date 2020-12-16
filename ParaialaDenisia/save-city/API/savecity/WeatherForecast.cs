@@ -1,6 +1,6 @@
 using System;
 
-namespace savecity
+namespace SaveCity
 {
     public class WeatherForecast
     {
