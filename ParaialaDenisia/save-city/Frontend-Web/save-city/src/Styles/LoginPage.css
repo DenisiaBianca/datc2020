@@ -114,5 +114,13 @@ html,
 .card {
   height: auto;
   margin: 20px;
-  background-color: white;
+}
+
+.problemCard{
+    background-color: #ccedd2;
+}
+
+.info{
+    height: 70vh;
+    overflow-y: scroll;
 }
