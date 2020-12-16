@@ -7,9 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SaveCity.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
+        [HttpGet]
+        public string GetUser()
+        {
+            return "Get request";
+        }
     }
 }
