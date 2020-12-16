@@ -9,6 +9,7 @@
   font-family: sans-serif;
   background: white;
   background-image: url("../Images/city.jpg");
+  background-size: auto 100%;
   background-repeat: no-repeat;
   /* background: -webkit-linear-gradient(
     to right,
