@@ -4,6 +4,7 @@ import "../Styles/LoginPage.css";
 import ProblemCard from "../Components/ProblemCard";
 import MapContainer from "../Components/Map";
 import ProblemList from "../Components/ProblemList";
+import data from "../data.json";
 const locations = [
   {
     name: "Gaura de canalizare",
@@ -101,11 +102,19 @@ export default function AdminPage() {
         </div>
         <div className="card">
           <div className="card-body info">
-            {locations.map((l, key) => (
-              <div key={key} onClick={() => ShowLocation(l.location)}>
+            {data.map((l, key) => (
+              <div
+                key={key}
+                onClick={() =>
+                  ShowLocation({ lat: l.Latitudine, lng: l.Longitudine })
+                }
+              >
                 <ProblemCard
-                  nume={l.name}
-                  description={l.description}
+                  nume={l.Titlu}
+                  description={l.Descriere}
+                  user={l.User}
+                  imag={l.Imagini}
+                  status={l.Status}
                 ></ProblemCard>
               </div>
             ))}

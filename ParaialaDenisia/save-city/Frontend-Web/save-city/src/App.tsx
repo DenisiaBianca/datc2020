@@ -5,6 +5,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage";
 import AdminPage from "./Pages/AdminPage";
+import city from "./Images/city2.png";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
             <Link className="navbar-brand" to={"/login"}>
-              <h2>SaveCity</h2>
+              <img src={city} />
+              <h2 className="title">SaveCity</h2>
             </Link>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
