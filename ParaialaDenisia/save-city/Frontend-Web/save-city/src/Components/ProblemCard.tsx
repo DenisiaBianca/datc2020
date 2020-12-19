@@ -1,5 +1,6 @@
 import React from "react";
 import "../Styles/LoginPage.css";
+import "../Styles/Card.css";
 
 export default function ProblemCard(props: {
   nume: string;

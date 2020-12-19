@@ -1,9 +1,6 @@
-// eslint-disable-next-line
-import React, { useState } from "react";
-import "../Styles/LoginPage.css";
-import ProblemCard from "../Components/ProblemCard";
-import MapContainer from "../Components/Map";
-import ProblemList from "../Components/ProblemList";
+import React, { ReactNode, useState } from "react";
+import { RouteProps } from "react-router-dom";
+import ProblemCard from "./ProblemCard";
 const locations = [
   {
     name: "Gaura de canalizare",
@@ -78,18 +75,17 @@ const locations = [
     },
   },
 ];
-export default function AdminPage() {
-  const [clickedLocation, setClickedLocation] = useState({
-    lat: 45.7543,
-    lng: 21.22709,
-  });
+
+export const ProblemList = (props: { data: any }) => {
+  let { data } = props;
+  const [showLoc, setShowLoc] = useState();
 
   function ShowLocation(location: any) {
-    setClickedLocation(location);
+    setShowLoc(location);
+    data = showLoc;
   }
-
   return (
-    <div className="admin">
+    <div>
       <div className="datas">
         <div className="buttons">
           <button type="button" className="btn btn-dark">
@@ -99,22 +95,17 @@ export default function AdminPage() {
             Probleme rezolvate
           </button>
         </div>
-        <div className="card">
-          <div className="card-body info">
-            {locations.map((l, key) => (
-              <div key={key} onClick={() => ShowLocation(l.location)}>
-                <ProblemCard
-                  nume={l.name}
-                  description={l.description}
-                ></ProblemCard>
-              </div>
-            ))}
+        {locations.map((l, key) => (
+          <div key={key} onClick={() => ShowLocation(l.location)}>
+            <ProblemCard
+              nume={l.name}
+              description={l.description}
+            ></ProblemCard>
           </div>
-        </div>
-      </div>
-      <div>
-        <MapContainer loc={clickedLocation} />
+        ))}
       </div>
     </div>
   );
-}
+};
+
+export default ProblemList;

@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 export function LoginPage() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [loginState, setLoginState] = useState(false);
   const history = useHistory();
 
   function LoginClick() {
@@ -14,7 +13,6 @@ export function LoginPage() {
     console.log(userName);
     console.log(password);
     if (userName === "denisia@mail" && password === "12345") {
-      setLoginState(true);
       history.push("admin");
     } else {
       console.log("gresit");
