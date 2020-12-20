@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import "../Styles/LoginPage.css";
 import ProblemCard from "../Components/ProblemCard";
 import MapContainer from "../Components/Map";
-import ProblemList from "../Components/ProblemList";
 import data from "../data.json";
+import { useEffect } from "react";
 const locations = [
   {
     name: "Gaura de canalizare",
@@ -84,41 +84,109 @@ export default function AdminPage() {
     lat: 45.7543,
     lng: 21.22709,
   });
+  const [problems, setProblems] = useState([]);
+  const [status, setStatus] = useState(false);
 
   function ShowLocation(location: any) {
     setClickedLocation(location);
   }
-
+  const sortByStatus = () => {
+    if (status) {
+      return (
+        <div>
+          {data.map((d) => {
+            if (d.Status == 2) {
+              console.log(d.id);
+              return (
+                <div
+                  key={d.id}
+                  onClick={() =>
+                    ShowLocation({ lat: d.Latitudine, lng: d.Longitudine })
+                  }
+                >
+                  <ProblemCard
+                    style="green"
+                    nume={d.Titlu}
+                    description={d.Descriere}
+                    user={d.User}
+                    imag={d.Imagini}
+                    status={d.Status}
+                  ></ProblemCard>
+                </div>
+              );
+            }
+          })}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {data.map((d) => {
+            if (d.Status == 1) {
+              console.log(d.id);
+              return (
+                <div
+                  key={d.id}
+                  onClick={() =>
+                    ShowLocation({ lat: d.Latitudine, lng: d.Longitudine })
+                  }
+                >
+                  <ProblemCard
+                    style="red"
+                    nume={d.Titlu}
+                    description={d.Descriere}
+                    user={d.User}
+                    imag={d.Imagini}
+                    status={d.Status}
+                  ></ProblemCard>
+                </div>
+              );
+            } else if (d.Status == 0) {
+              console.log(d.id);
+              return (
+                <div
+                  key={d.id}
+                  onClick={() =>
+                    ShowLocation({ lat: d.Latitudine, lng: d.Longitudine })
+                  }
+                >
+                  <ProblemCard
+                    style="orange"
+                    nume={d.Titlu}
+                    description={d.Descriere}
+                    user={d.User}
+                    imag={d.Imagini}
+                    status={d.Status}
+                  ></ProblemCard>
+                </div>
+              );
+            }
+          })}
+        </div>
+      );
+    }
+  };
   return (
     <div className="admin">
       <div className="datas">
         <div className="buttons">
-          <button type="button" className="btn btn-dark">
+          <button
+            type="button"
+            className="btn btn-dark"
+            onClick={() => setStatus(false)}
+          >
             Probleme sesizate
           </button>
-          <button type="button" className="btn btn-dark">
+          <button
+            type="button"
+            className="btn btn-dark"
+            onClick={() => setStatus(true)}
+          >
             Probleme rezolvate
           </button>
         </div>
         <div className="card">
-          <div className="card-body info">
-            {data.map((l, key) => (
-              <div
-                key={key}
-                onClick={() =>
-                  ShowLocation({ lat: l.Latitudine, lng: l.Longitudine })
-                }
-              >
-                <ProblemCard
-                  nume={l.Titlu}
-                  description={l.Descriere}
-                  user={l.User}
-                  imag={l.Imagini}
-                  status={l.Status}
-                ></ProblemCard>
-              </div>
-            ))}
-          </div>
+          <div className="card-body info">{sortByStatus()}</div>
         </div>
       </div>
       <div>

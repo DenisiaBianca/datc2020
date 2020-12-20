@@ -5,7 +5,7 @@
       "Latitudine": 45.7484,
       "Titlu":"Copac daramat",
       "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
-      "Status": "nerezolvat",
+      "Status": 0,
       "Punctaj": null,
       "User":{
           "nume":"Paraiala",
@@ -32,7 +32,7 @@
         "Latitudine": 45.759,
         "Titlu":"Inundatie",
         "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
-        "Status": "nerezolvat",
+        "Status": 1,
         "Punctaj": null,
         "User":{
             "nume":"Paraiala",
@@ -52,5 +52,113 @@
            "url":"https://upload.wikimedia.org/wikipedia/commons/1/15/Nashville_Flood.jpg"    
        }
        ]
-      }
+      },
+      {
+        "id": 3,
+        "Longitudine":21.2272,
+        "Latitudine": 45.7484,
+        "Titlu":"Copac daramat",
+        "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+        "Status": 2,
+        "Punctaj": null,
+        "User":{
+            "nume":"Paraiala",
+            "prenume":"Denisia",
+            "Email":"denisia@gmail.com",
+            "Varsta":22,
+            "gen":"f",
+            "Punctaj": 178
+        },
+        "Imagini":
+           [{
+            "id":1,
+            "url":"https://brasovmetropolitan.ro/wp-content/uploads/2019/07/copac-cazut.jpg"
+          },
+          {
+              "id":2,
+              "url":"https://static4.libertatea.ro/wp-content/uploads/2017/05/daca-un-copac-ti-a-cazut-pe-masina.jpg"    
+          }
+          ]
+      },
+      {
+          "id": 4,
+          "Longitudine": 21.2275,
+          "Latitudine": 45.759,
+          "Titlu":"Inundatie",
+          "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+          "Status": 2,
+          "Punctaj": null,
+          "User":{
+              "nume":"Paraiala",
+              "prenume":"Denisia",
+              "Email":"denisia@gmail.com",
+              "Varsta":22,
+              "gen":"f",
+              "Punctaj": 178
+          },
+          "Imagini":
+          [{
+           "id":3,
+           "url":"https://upload.wikimedia.org/wikipedia/commons/1/15/Nashville_Flood.jpg"
+         },
+         {
+             "id":4,
+             "url":"https://upload.wikimedia.org/wikipedia/commons/1/15/Nashville_Flood.jpg"    
+         }
+         ]
+        },
+        {
+            "id": 5,
+            "Longitudine":21.2272,
+            "Latitudine": 45.7484,
+            "Titlu":"Copac daramat",
+            "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+            "Status": 2,
+            "Punctaj": null,
+            "User":{
+                "nume":"Paraiala",
+                "prenume":"Denisia",
+                "Email":"denisia@gmail.com",
+                "Varsta":22,
+                "gen":"f",
+                "Punctaj": 178
+            },
+            "Imagini":
+               [{
+                "id":1,
+                "url":"https://brasovmetropolitan.ro/wp-content/uploads/2019/07/copac-cazut.jpg"
+              },
+              {
+                  "id":2,
+                  "url":"https://static4.libertatea.ro/wp-content/uploads/2017/05/daca-un-copac-ti-a-cazut-pe-masina.jpg"    
+              }
+              ]
+          },
+          {
+              "id": 6,
+              "Longitudine": 21.2275,
+              "Latitudine": 45.759,
+              "Titlu":"Inundatie",
+              "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
+              "Status": 0,
+              "Punctaj": null,
+              "User":{
+                  "nume":"Paraiala",
+                  "prenume":"Denisia",
+                  "Email":"denisia@gmail.com",
+                  "Varsta":22,
+                  "gen":"f",
+                  "Punctaj": 178
+              },
+              "Imagini":
+              [{
+               "id":3,
+               "url":"https://upload.wikimedia.org/wikipedia/commons/1/15/Nashville_Flood.jpg"
+             },
+             {
+                 "id":4,
+                 "url":"https://upload.wikimedia.org/wikipedia/commons/1/15/Nashville_Flood.jpg"    
+             }
+             ]
+            }
 ]

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import "../Styles/LoginPage.css";
 import "../Styles/Card.css";
 
@@ -7,16 +7,30 @@ export default function ProblemCard(props: {
   description: string;
   user: any;
   imag: any;
-  status: string;
+  status: number;
+  style: string;
 }) {
+  const status = () => {
+    if (props.status == 2) {
+      return "Rezolvat";
+    } else if (props.status == 1) {
+      return "Nerezolvat";
+    } else {
+      return "In desfasurare";
+    }
+  };
+
+  const style: CSSProperties = {
+    color: props.style,
+  };
   return (
     <div>
       <div className="card problemCard">
         <div className="card-body title">
-          <h6>{props.nume}</h6>
+          <h6 style={style}>{props.nume}</h6>
           <p>
             Sesizat de: {props.user.nume} {props.user.prenume} <br />
-            Status: {props.status}
+            Status: {status()}
           </p>
         </div>
         <div className="img">
