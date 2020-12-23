@@ -106,11 +106,7 @@ const SignInScreen = ({navigation}) => {
       );
       return;
     }
-    console.log('User length is ' + foundUser.length);
     if (foundUser.length == 0) {
-      console.log(foundUser[0]);
-      console.log(data.username + ' ' + data.password);
-      console.log('This is a test ' + 10000);
       Alert.alert('Invalid User!', 'Username or password is incorrect.', [
         {text: 'Okay'},
       ]);
@@ -118,14 +114,14 @@ const SignInScreen = ({navigation}) => {
     }
     signIn(foundUser);
 
-    if (userName.length == 0 || password.length == 0) {
-      Alert.alert(
-        'Wrong Input!',
-        'Username or password field cannot be empty.',
-        [{text: 'Okay'}],
-      );
-      return;
-    }
+    // if (userName.length == 0 || password.length == 0) {
+    //   Alert.alert(
+    //     'Wrong Input!',
+    //     'Username or password field cannot be empty.',
+    //     [{text: 'Okay'}],
+    //   );
+    //   return;
+    // }
 
     // if (userName != 'user' && password != 'pass') {
     //   Alert.alert('Invalid User!', 'Username or password is incorrect.', [
@@ -133,7 +129,7 @@ const SignInScreen = ({navigation}) => {
     //   ]);
     //   return;
     // }
-    signIn(foundUser);
+    // signIn(foundUser);
   };
 
   return (

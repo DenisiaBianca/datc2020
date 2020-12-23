@@ -9,21 +9,102 @@ import {
   StyleSheet,
   Platform,
   StatusBar,
+  Alert,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import Services from '../services/services';
+import {useEffect} from 'react';
+import axios from 'axios';
 
 const SignInScreen = ({navigation}) => {
   const [data, setData] = React.useState({
     email: '',
+    username: '',
+    cnp: '',
     password: '',
     confirm_password: '',
     check_textInputChange: false,
     secureTextEntry: true,
     confirm_secureTextEntry: true,
   });
+
+  // const params = JSON.stringify({
+  //   email: data.email,
+
+  //   password: data.password,
+
+  //   confirm_password: data.confirm_password,
+  // });
+
+  // axios
+  //   .post('https://webhook.site/8220e13c-e97e-47a1-891f-09263e57f616', params, {
+  //     headers: {
+  //       'content-type': 'application/json',
+  //     },
+  //   })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // https://webhook.site/8220e13c-e97e-47a1-891f-09263e57f616
+  //  http://192.168.1.11:8081
+
+  registerUsers = () => {
+    try {
+      fetch('https://localhost:44388/user', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: data.email,
+          username: data.username,
+          cnp: data.cnp,
+          password: data.password,
+          confirm_password: data.confirm_password,
+        }),
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  //  const register = () => {
+
+  //     fetch('http://192.168.1.3', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         email: email,
+  //         password: password,
+  //       })
+
+  //     });
+
+  //     .then((response) => response.json())
+  //     .then((res) => )
+  //   };
+
+  // const [user, setUser] = React.useState('ceva');
+  // const {getUser} = Services();
+
+  // const getUserFunction = async () => {
+  //   const dataResponse = await axios.get('https://localhost:44388/user');
+  //   setUser('altceva');
+  //   console.log(user);
+  //   setUser(JSON.stringify(dataResponse.data));
+  // };
 
   const textInputChange = (val) => {
     if (val.length != 0) {
@@ -36,6 +117,38 @@ const SignInScreen = ({navigation}) => {
       setData({
         ...data,
         email: val,
+        check_textInputChange: false,
+      });
+    }
+  };
+
+  const usernameInputChange = (val) => {
+    if (val.length != 0) {
+      setData({
+        ...data,
+        username: val,
+        check_textInputChange: true,
+      });
+    } else {
+      setData({
+        ...data,
+        username: val,
+        check_textInputChange: false,
+      });
+    }
+  };
+
+  const cnpInputChange = (val) => {
+    if (val.length != 0) {
+      setData({
+        ...data,
+        cnp: val,
+        check_textInputChange: true,
+      });
+    } else {
+      setData({
+        ...data,
+        cnp: val,
         check_textInputChange: false,
       });
     }
@@ -68,6 +181,12 @@ const SignInScreen = ({navigation}) => {
       confirm_secureTextEntry: !data.confirm_secureTextEntry,
     });
   };
+
+  // useEffect(() => {
+  //   getUserFunction();
+  //   console.log(1000);
+  //   console.log(user);
+  // });
 
   return (
     <View style={styles.container}>
@@ -108,7 +227,7 @@ const SignInScreen = ({navigation}) => {
             placeholder="Nume utilizator"
             style={styles.textInput}
             autoCapitalize="none"
-            onChangeText={(val) => textInputChange(val)}
+            onChangeText={(val) => usernameInputChange(val)}
           />
           {data.check_textInputChange ? (
             <Animatable.View animation="bounceIn">
@@ -131,7 +250,7 @@ const SignInScreen = ({navigation}) => {
             placeholder="CNP utilizator"
             style={styles.textInput}
             autoCapitalize="none"
-            onChangeText={(val) => textInputChange(val)}
+            onChangeText={(val) => cnpInputChange(val)}
           />
           {data.check_textInputChange ? (
             <Animatable.View animation="bounceIn">
@@ -196,15 +315,17 @@ const SignInScreen = ({navigation}) => {
 
         <View style={styles.button}>
           <LinearGradient colors={['#08d4c4', '#01ab9d']} style={styles.signIn}>
-            <Text
-              style={[
-                styles.textSign,
-                {
-                  color: '#fff',
-                },
-              ]}>
-              Creeaza contul
-            </Text>
+            <TouchableOpacity onPress={registerUsers}>
+              <Text
+                style={[
+                  styles.textSign,
+                  {
+                    color: '#fff',
+                  },
+                ]}>
+                Creeaza contul
+              </Text>
+            </TouchableOpacity>
           </LinearGradient>
           <TouchableOpacity
             onPress={() => navigation.navigate('SignInScreen')}
