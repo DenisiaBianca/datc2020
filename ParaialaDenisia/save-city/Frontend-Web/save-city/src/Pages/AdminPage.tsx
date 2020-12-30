@@ -104,14 +104,7 @@ export default function AdminPage() {
                     ShowLocation({ lat: d.Latitudine, lng: d.Longitudine })
                   }
                 >
-                  <ProblemCard
-                    style="green"
-                    nume={d.Titlu}
-                    description={d.Descriere}
-                    user={d.User}
-                    imag={d.Imagini}
-                    status={d.Status}
-                  ></ProblemCard>
+                  <ProblemCard style="green" problem={d}></ProblemCard>
                 </div>
               );
             }
@@ -131,14 +124,7 @@ export default function AdminPage() {
                     ShowLocation({ lat: d.Latitudine, lng: d.Longitudine })
                   }
                 >
-                  <ProblemCard
-                    style="red"
-                    nume={d.Titlu}
-                    description={d.Descriere}
-                    user={d.User}
-                    imag={d.Imagini}
-                    status={d.Status}
-                  ></ProblemCard>
+                  <ProblemCard style="red" problem={d}></ProblemCard>
                 </div>
               );
             } else if (d.Status == 0) {
@@ -150,14 +136,7 @@ export default function AdminPage() {
                     ShowLocation({ lat: d.Latitudine, lng: d.Longitudine })
                   }
                 >
-                  <ProblemCard
-                    style="orange"
-                    nume={d.Titlu}
-                    description={d.Descriere}
-                    user={d.User}
-                    imag={d.Imagini}
-                    status={d.Status}
-                  ></ProblemCard>
+                  <ProblemCard style="orange" problem={d}></ProblemCard>
                 </div>
               );
             }

@@ -1,19 +1,15 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useState } from "react";
 import "../Styles/LoginPage.css";
 import "../Styles/Card.css";
+import { Collapse } from "react-bootstrap";
 
-export default function ProblemCard(props: {
-  nume: string;
-  description: string;
-  user: any;
-  imag: any;
-  status: number;
-  style: string;
-}) {
+export default function ProblemCard(props: { problem: any; style: string }) {
+  const [show, setShow] = useState(false);
+
   const status = () => {
-    if (props.status == 2) {
+    if (props.problem.Status == 2) {
       return "Rezolvat";
-    } else if (props.status == 1) {
+    } else if (props.problem.Status == 1) {
       return "Nerezolvat";
     } else {
       return "In desfasurare";
@@ -26,19 +22,33 @@ export default function ProblemCard(props: {
   return (
     <div>
       <div className="card problemCard">
-        <div className="card-body title">
-          <h6 style={style}>{props.nume}</h6>
-          <p>
-            Sesizat de: {props.user.nume} {props.user.prenume} <br />
-            Status: {status()}
-          </p>
+        <div className="cardVis">
+          <div className="card-body title">
+            <h6 style={style}>{props.problem.Titlu}</h6>
+            <p>
+              Sesizat de: {props.problem.User.nume} {props.problem.User.prenume}{" "}
+              <br />
+              Status: {status()}
+            </p>
+          </div>
+          <div className="img">
+            <img src={props.problem.Imagini[0].url}></img>
+          </div>
         </div>
-        <div className="img">
-          <img src={props.imag[0].url}></img>
-        </div>
-        <div className="details">
-          <p>{props.description}</p>
-        </div>
+        <button
+          onClick={() => setShow(!show)}
+          aria-controls="example-collapse-text"
+          aria-expanded={show}
+          className="btn"
+        >
+          click
+        </button>
+        <Collapse in={show}>
+          <div id="example-collapse-text" className="details">
+            <p>{props.problem.Descriere}</p>
+            <p>Punctaj: {props.problem.Punctaj}</p>
+          </div>
+        </Collapse>
       </div>
     </div>
   );

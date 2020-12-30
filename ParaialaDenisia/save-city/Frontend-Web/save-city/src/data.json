@@ -6,7 +6,7 @@
       "Titlu":"Copac daramat",
       "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
       "Status": 0,
-      "Punctaj": null,
+      "Punctaj": 16,
       "User":{
           "nume":"Paraiala",
           "prenume":"Denisia",
@@ -33,7 +33,7 @@
         "Titlu":"Inundatie",
         "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
         "Status": 1,
-        "Punctaj": null,
+        "Punctaj": 44,
         "User":{
             "nume":"Paraiala",
             "prenume":"Denisia",
@@ -60,7 +60,7 @@
         "Titlu":"Copac daramat",
         "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
         "Status": 2,
-        "Punctaj": null,
+        "Punctaj": 32,
         "User":{
             "nume":"Paraiala",
             "prenume":"Denisia",
@@ -87,7 +87,7 @@
           "Titlu":"Inundatie",
           "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
           "Status": 2,
-          "Punctaj": null,
+          "Punctaj": 18,
           "User":{
               "nume":"Paraiala",
               "prenume":"Denisia",
@@ -114,7 +114,7 @@
             "Titlu":"Copac daramat",
             "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
             "Status": 2,
-            "Punctaj": null,
+            "Punctaj": 30,
             "User":{
                 "nume":"Paraiala",
                 "prenume":"Denisia",
@@ -141,7 +141,7 @@
               "Titlu":"Inundatie",
               "Descriere": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
               "Status": 0,
-              "Punctaj": null,
+              "Punctaj": 29.00,
               "User":{
                   "nume":"Paraiala",
                   "prenume":"Denisia",

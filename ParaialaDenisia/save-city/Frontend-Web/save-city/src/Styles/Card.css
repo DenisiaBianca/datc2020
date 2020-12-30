@@ -27,22 +27,23 @@
   
   .problemCard{
     width: auto;
-    min-height: 200px;
+    min-height: 100px;
+    height: auto;
     background-color: #101010;
     background-image: url("https://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg");
     background-size: cover;
     background-position: center;
     opacity: 0.7;
     color: #0f0f0f;
+  }
+
+  .cardVis{
     display: grid;
     grid-template-columns: auto 170px;
     grid-template-rows: 100px auto;
-    grid-template-areas: "a b" "c c";
   }
   .card .details{
-      grid-area: c;
-      padding: 10px;
-      margin-top: 10px;
+      padding: 0px 20px;
   }
 
   .problemCard:hover{
@@ -51,4 +52,16 @@
     padding: 5px;
     margin: 15px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  }
+
+  .show{
+    transition: 3s;
+  }
+
+  .problemCard .btn{
+      width: 90%;
+      background-color: ghostwhite;
+      height: 20px;
+      margin: 25px 5%;
+      border: 0 solid white;
   }
