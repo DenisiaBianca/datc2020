@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 
 export interface Services {
-  readonly getMyIdea: () => AxiosResponse<any>;
+  readonly getUser: () => AxiosResponse<[]>;
 }
 
-const baseURL = "https://localhost:44388/";
+const baseURL = "https://localhost:5001/";
 
 export const Services = () => {
   async function getUser() {

@@ -63,6 +63,7 @@ namespace lab4{
                 TableQuerySegment<User> resultSegment=await studentTable.ExecuteQuerySegmentedAsync(query,token);
                 students.AddRange(resultSegment.Results);
             }while(token!=null);
+            
             return students;
 
         }

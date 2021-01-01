@@ -27,6 +27,13 @@ namespace lab4.Controllers
         {
             return await _studentRepo.GetAllStudents();
         }
+
+        [HttpGet("/get")]
+        public async Task<List<User>> Get2()
+        {
+            return await _studentRepo.GetAllStudents();
+        }
+
         [HttpPost]
         public async Task<string> Post([FromBody]User student )
         {

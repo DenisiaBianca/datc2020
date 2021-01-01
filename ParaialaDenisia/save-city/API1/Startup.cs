@@ -27,6 +27,19 @@ namespace lab4
         {
              services.AddScoped<IUser,UserRepo>();
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "policy",
+                                  builder =>
+                                  {
+                                      builder.WithOrigins().AllowAnyOrigin()
+                                                           .AllowAnyMethod()
+                                                           .AllowAnyHeader();
+
+
+                                  });
+            });
            
         }
 
@@ -39,6 +52,12 @@ namespace lab4
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(builder => builder
+                       .AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       );
 
             app.UseRouting();
 
