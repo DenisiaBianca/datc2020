@@ -15,7 +15,11 @@ interface data {
   eTag: React.ReactNode;
 }
 
-export default function ProblemCard(props: { problem: any; style: string }) {
+export default function ProblemCard(props: {
+  problem: any;
+  style: string;
+  sendLocation: any;
+}) {
   const [show, setShow] = useState(false);
   const [datas, setData] = useState([]);
   const [score, setScore] = useState(props.problem.Punctaj);
@@ -60,7 +64,15 @@ export default function ProblemCard(props: { problem: any; style: string }) {
   return (
     <div>
       <div className="card problemCard">
-        <div className="cardVis">
+        <div
+          className="cardVis"
+          onClick={() =>
+            props.sendLocation({
+              lat: props.problem.Latitudine,
+              lng: props.problem.Longitudine,
+            })
+          }
+        >
           <div className="card-body title">
             <h6 style={style}>{props.problem.Titlu}</h6>
             <p>

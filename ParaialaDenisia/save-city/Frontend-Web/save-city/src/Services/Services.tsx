@@ -20,6 +20,7 @@ export const Services = () => {
 
   async function updateProblem(data: any) {
     console.log(JSON.stringify(data));
+    alert("S-a salvat");
     axios.post(baseURL + "", JSON.stringify(data));
   }
 

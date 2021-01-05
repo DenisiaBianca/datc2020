@@ -100,13 +100,12 @@ export default function AdminPage() {
             if (d.Status == 2) {
               //console.log(d.id);
               return (
-                <div
-                  key={d.id}
-                  onClick={() =>
-                    ShowLocation({ lat: d.Latitudine, lng: d.Longitudine })
-                  }
-                >
-                  <ProblemCard style="green" problem={d}></ProblemCard>
+                <div key={d.id}>
+                  <ProblemCard
+                    sendLocation={(e: any) => ShowLocation(e)}
+                    style="green"
+                    problem={d}
+                  ></ProblemCard>
                 </div>
               );
             }
@@ -120,25 +119,23 @@ export default function AdminPage() {
             if (d.Status == 1) {
               //console.log(d.id);
               return (
-                <div
-                  key={d.id}
-                  onClick={() =>
-                    ShowLocation({ lat: d.Latitudine, lng: d.Longitudine })
-                  }
-                >
-                  <ProblemCard style="red" problem={d}></ProblemCard>
+                <div key={d.id}>
+                  <ProblemCard
+                    sendLocation={(e: any) => ShowLocation(e)}
+                    style="red"
+                    problem={d}
+                  ></ProblemCard>
                 </div>
               );
             } else if (d.Status == 0) {
               //console.log(d.id);
               return (
-                <div
-                  key={d.id}
-                  onClick={() =>
-                    ShowLocation({ lat: d.Latitudine, lng: d.Longitudine })
-                  }
-                >
-                  <ProblemCard style="orange" problem={d}></ProblemCard>
+                <div key={d.id}>
+                  <ProblemCard
+                    sendLocation={(e: any) => ShowLocation(e)}
+                    style="orange"
+                    problem={d}
+                  ></ProblemCard>
                 </div>
               );
             }
