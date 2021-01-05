@@ -7,11 +7,11 @@ export interface Services {
   readonly updateProblem: (data: any) => void;
 }
 
-const baseURL = "https://localhost:5001/";
+const baseURL = "https://l05.azurewebsites.net/";
 
 export const Services = () => {
   async function getUser() {
-    return await axios.get(baseURL + "user");
+    return await axios.get(baseURL + "ProblemeSesizate/get");
   }
 
   async function getAllproblems() {

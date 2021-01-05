@@ -33,13 +33,13 @@ export default function ImageDialog(props: any) {
     >
       <DialogTitle id="simple-dialog-title">Galerie</DialogTitle>
       <Carousel>
-        {imgs.map((i: any, key: any) => {
-          return (
-            <Carousel.Item key={key}>
-              <img className="d-block w-100 images" src={i.url} />
-            </Carousel.Item>
-          );
-        })}
+        {/* {imgs.map((i: any, key: any) => { */}
+        {/* return ( */}
+        <Carousel.Item>
+          <img className="d-block w-100 images" src={imgs} />
+        </Carousel.Item>
+        {/* ); */}
+        {/* })} */}
       </Carousel>
     </Dialog>
   );

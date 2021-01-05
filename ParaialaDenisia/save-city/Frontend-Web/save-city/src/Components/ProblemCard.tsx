@@ -8,13 +8,7 @@ import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ImageDialog from "./ImageDialog";
-
-interface data {
-  rowKey: React.ReactNode;
-  partitionKey: React.ReactNode;
-  timestamp: React.ReactNode;
-  eTag: React.ReactNode;
-}
+import { data } from "../Services/Interfaces";
 
 export default function ProblemCard(props: {
   problem: any;
@@ -23,8 +17,8 @@ export default function ProblemCard(props: {
 }) {
   const [show, setShow] = useState(false);
   const [datas, setData] = useState([]);
-  const [score, setScore] = useState(props.problem.Punctaj);
-  const [stateOfProblem, setStateOfProblem] = useState(props.problem.Status);
+  const [score, setScore] = useState(props.problem.punctaj);
+  const [stateOfProblem, setStateOfProblem] = useState(props.problem.status);
   const { getUser, updateProblem } = Services();
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
@@ -77,7 +71,7 @@ export default function ProblemCard(props: {
   const galery = () => {
     return (
       <ImageDialog
-        imgs={props.problem.Imagini}
+        imgs={props.problem.poza}
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}
@@ -92,24 +86,20 @@ export default function ProblemCard(props: {
           className="cardVis"
           onClick={() =>
             props.sendLocation({
-              lat: props.problem.Latitudine,
-              lng: props.problem.Longitudine,
+              lat: Number(props.problem.lat),
+              lng: Number(props.problem.lng),
             })
           }
         >
           <div className="card-body title">
-            <h6 style={style}>{props.problem.Titlu}</h6>
+            <h6 style={style}>{props.problem.titlu}</h6>
             <p>
-              Sesizat de: {props.problem.User.nume} {props.problem.User.prenume}{" "}
-              <br />
-              Status: {status()}
+              Sesizat de: {props.problem.rowKey} <br />
+              Status: {stateOfProblem}
             </p>
           </div>
           <div className="img">
-            <img
-              src={props.problem.Imagini[0].url}
-              onClick={() => openGalery()}
-            ></img>
+            <img src={props.problem.poza} onClick={() => openGalery()}></img>
           </div>
         </div>
         <Button
@@ -123,11 +113,11 @@ export default function ProblemCard(props: {
         </Button>
         <Collapse in={show}>
           <div id="example-collapse-text" className="details">
-            <p>{props.problem.Descriere}</p>
+            <p>{props.problem.descriere}</p>
             <div>
               <Typography id="slider-score">Punctaj: {score}</Typography>
               <Slider
-                key={props.problem.Id}
+                key={Number(props.problem.partitionKey)}
                 value={score}
                 aria-labelledby="slider-score"
                 step={5}
@@ -150,21 +140,21 @@ export default function ProblemCard(props: {
               <Button
                 className="btn1"
                 style={{ backgroundColor: "green", color: "white" }}
-                onClick={() => setStateOfProblem(2)}
+                onClick={() => setStateOfProblem("Rezolvat")}
               >
                 Rezolvat
               </Button>
               <Button
                 className="btn1"
                 style={{ backgroundColor: "orange", color: "white" }}
-                onClick={() => setStateOfProblem(0)}
+                onClick={() => setStateOfProblem("In desfasurare")}
               >
                 In desfasurare
               </Button>
               <Button
                 className="btn1"
                 style={{ backgroundColor: "red", color: "white" }}
-                onClick={() => setStateOfProblem(3)}
+                onClick={() => setStateOfProblem("Anulat")}
               >
                 Anulat
               </Button>

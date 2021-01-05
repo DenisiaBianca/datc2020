@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import "../Styles/LoginPage.css";
 import ProblemCard from "../Components/ProblemCard";
 import MapContainer from "../Components/Map";
-import data from "../data.json";
+// import data from "../data.json";
 import { useEffect } from "react";
 import { Button } from "@material-ui/core";
 import Galery from "../Components/ImageDialog";
+import Services from "../Services/Services";
+import { data } from "../Services/Interfaces";
 
 const locations = [
   {
@@ -89,6 +91,17 @@ export default function AdminPage() {
   });
   const [problems, setProblems] = useState([]);
   const [status, setStatus] = useState(false);
+  const { getUser, updateProblem } = Services();
+
+  const getProblems = async () => {
+    const result = await getUser();
+    setProblems(result.data);
+    //console.log("Data: " + JSON.stringify(result.data));
+  };
+
+  useEffect(() => {
+    getProblems();
+  }, []);
 
   function ShowLocation(location: any) {
     setClickedLocation(location);
@@ -97,11 +110,11 @@ export default function AdminPage() {
     if (status) {
       return (
         <div>
-          {data.map((d) => {
-            if (d.Status == 2) {
+          {problems.map((d: data) => {
+            if (d.status == "ToDo") {
               //console.log(d.id);
               return (
-                <div key={d.id}>
+                <div key={Number(d.partitionKey)}>
                   <ProblemCard
                     sendLocation={(e: any) => ShowLocation(e)}
                     style="green"
@@ -116,11 +129,11 @@ export default function AdminPage() {
     } else {
       return (
         <div>
-          {data.map((d) => {
-            if (d.Status == 1) {
+          {problems.map((d: data) => {
+            if (d.status == "Nerezolvat") {
               //console.log(d.id);
               return (
-                <div key={d.id}>
+                <div key={Number(d.partitionKey)}>
                   <ProblemCard
                     sendLocation={(e: any) => ShowLocation(e)}
                     style="red"
@@ -128,10 +141,10 @@ export default function AdminPage() {
                   ></ProblemCard>
                 </div>
               );
-            } else if (d.Status == 0) {
+            } else if (d.status == 0) {
               //console.log(d.id);
               return (
-                <div key={d.id}>
+                <div key={Number(d.partitionKey)}>
                   <ProblemCard
                     sendLocation={(e: any) => ShowLocation(e)}
                     style="orange"
