@@ -41,6 +41,7 @@
     display: grid;
     grid-template-columns: auto 170px;
     grid-template-rows: 100px auto;
+    padding-bottom: 20px;
   }
   .card .details{
       padding: 0px 20px;
@@ -64,4 +65,14 @@
       height: 20px;
       margin: 25px 5%;
       border: 0 solid white;
+  }
+
+  .buttons{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .buttons .btn1{
+    width: 30%;
+    height: 25px;
   }

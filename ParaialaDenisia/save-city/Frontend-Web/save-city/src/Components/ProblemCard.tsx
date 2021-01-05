@@ -4,6 +4,9 @@ import "../Styles/Card.css";
 import { Collapse } from "react-bootstrap";
 import { getDefaultSettings } from "http2";
 import Services from "../Services/Services";
+import Slider from "@material-ui/core/Slider";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
 interface data {
   rowKey: React.ReactNode;
@@ -15,12 +18,14 @@ interface data {
 export default function ProblemCard(props: { problem: any; style: string }) {
   const [show, setShow] = useState(false);
   const [datas, setData] = useState([]);
-  const { getUser } = Services();
+  const [score, setScore] = useState(props.problem.Punctaj);
+  const [stateOfProblem, setStateOfProblem] = useState(props.problem.Status);
+  const { getUser, updateProblem } = Services();
 
   const getData = async () => {
     const result = await getUser();
     setData(result.data);
-    console.log("Data: " + JSON.stringify(result.data));
+    //console.log("Data: " + JSON.stringify(result.data));
   };
 
   useEffect(() => {
@@ -28,10 +33,12 @@ export default function ProblemCard(props: { problem: any; style: string }) {
   }, []);
 
   const status = () => {
-    if (props.problem.Status == 2) {
+    if (stateOfProblem == 2) {
       return "Rezolvat";
-    } else if (props.problem.Status == 1) {
+    } else if (stateOfProblem == 1) {
       return "Nerezolvat";
+    } else if (stateOfProblem == 3) {
+      return "Anulat";
     } else {
       return "In desfasurare";
     }
@@ -40,6 +47,16 @@ export default function ProblemCard(props: { problem: any; style: string }) {
   const style: CSSProperties = {
     color: props.style,
   };
+
+  function SaveChanges() {
+    const data = {
+      score: score,
+      state: stateOfProblem,
+      problemId: props.problem.id,
+    };
+    updateProblem(data);
+  }
+
   return (
     <div>
       <div className="card problemCard">
@@ -56,34 +73,66 @@ export default function ProblemCard(props: { problem: any; style: string }) {
             <img src={props.problem.Imagini[0].url}></img>
           </div>
         </div>
-        <button
+        <Button
+          className="btn"
+          size="small"
           onClick={() => setShow(!show)}
           aria-controls="example-collapse-text"
           aria-expanded={show}
-          className="btn"
         >
-          click
-        </button>
+          Vezi detalii
+        </Button>
         <Collapse in={show}>
           <div id="example-collapse-text" className="details">
             <p>{props.problem.Descriere}</p>
-            <p>Punctaj: {props.problem.Punctaj}</p>
-            {/* {Object.keys(datas).map((index) => {
-              [datas].map((item, index) => {
-                <div>
-                  <p>ceva</p>
-                  <p>{item}</p>
-                </div>;
-              });
-            })} */}
-            {datas.map((d: data, i: any) => (
+            <div>
+              <Typography id="slider-score">Punctaj: {score}</Typography>
+              <Slider
+                key={props.problem.Id}
+                value={score}
+                aria-labelledby="slider-score"
+                step={5}
+                marks
+                min={0}
+                max={100}
+                valueLabelDisplay="auto"
+                onChange={(e, v) => setScore(v)}
+              />
+            </div>
+            {/* {datas.map((d: data, i: any) => (
               <div key={i}>
                 <p>{d.rowKey}</p>
                 <p>{d.partitionKey}</p>
                 <p>{d.timestamp}</p>
                 <p>{d.eTag}</p>
               </div>
-            ))}
+            ))} */}
+            <div className="buttons">
+              <Button
+                className="btn1"
+                style={{ backgroundColor: "green", color: "white" }}
+                onClick={() => setStateOfProblem(2)}
+              >
+                Rezolvat
+              </Button>
+              <Button
+                className="btn1"
+                style={{ backgroundColor: "orange", color: "white" }}
+                onClick={() => setStateOfProblem(0)}
+              >
+                In desfasurare
+              </Button>
+              <Button
+                className="btn1"
+                style={{ backgroundColor: "red", color: "white" }}
+                onClick={() => setStateOfProblem(3)}
+              >
+                Anulat
+              </Button>
+            </div>
+            <Button size="small" className="btn" onClick={() => SaveChanges()}>
+              Salveaza modificarile
+            </Button>
           </div>
         </Collapse>
       </div>

@@ -5,6 +5,8 @@ import ProblemCard from "../Components/ProblemCard";
 import MapContainer from "../Components/Map";
 import data from "../data.json";
 import { useEffect } from "react";
+import { Button } from "@material-ui/core";
+
 const locations = [
   {
     name: "Gaura de canalizare",
@@ -96,7 +98,7 @@ export default function AdminPage() {
         <div>
           {data.map((d) => {
             if (d.Status == 2) {
-              console.log(d.id);
+              //console.log(d.id);
               return (
                 <div
                   key={d.id}
@@ -116,7 +118,7 @@ export default function AdminPage() {
         <div>
           {data.map((d) => {
             if (d.Status == 1) {
-              console.log(d.id);
+              //console.log(d.id);
               return (
                 <div
                   key={d.id}
@@ -128,7 +130,7 @@ export default function AdminPage() {
                 </div>
               );
             } else if (d.Status == 0) {
-              console.log(d.id);
+              //console.log(d.id);
               return (
                 <div
                   key={d.id}
@@ -145,24 +147,17 @@ export default function AdminPage() {
       );
     }
   };
+
   return (
     <div className="admin">
       <div className="datas">
         <div className="buttons">
-          <button
-            type="button"
-            className="btn btn-dark"
-            onClick={() => setStatus(false)}
-          >
+          <Button className="btn" onClick={() => setStatus(false)}>
             Probleme sesizate
-          </button>
-          <button
-            type="button"
-            className="btn btn-dark"
-            onClick={() => setStatus(true)}
-          >
+          </Button>
+          <Button className="btn" onClick={() => setStatus(true)}>
             Probleme rezolvate
-          </button>
+          </Button>
         </div>
         <div className="card">
           <div className="card-body info">{sortByStatus()}</div>
