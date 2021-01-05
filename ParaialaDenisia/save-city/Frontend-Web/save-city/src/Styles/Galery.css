@@ -1,0 +1,6 @@
+.images{
+    width: 90vw;
+    height: 300px;
+    object-fit: cover;
+    padding: 10px;
+}

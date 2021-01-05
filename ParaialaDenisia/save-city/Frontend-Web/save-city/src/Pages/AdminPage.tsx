@@ -6,6 +6,7 @@ import MapContainer from "../Components/Map";
 import data from "../data.json";
 import { useEffect } from "react";
 import { Button } from "@material-ui/core";
+import Galery from "../Components/ImageDialog";
 
 const locations = [
   {
@@ -163,6 +164,7 @@ export default function AdminPage() {
       <div>
         <MapContainer loc={clickedLocation} />
       </div>
+      {/* <Galery></Galery> */}
     </div>
   );
 }

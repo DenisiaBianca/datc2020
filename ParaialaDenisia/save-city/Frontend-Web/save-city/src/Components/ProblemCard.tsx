@@ -7,6 +7,7 @@ import Services from "../Services/Services";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import ImageDialog from "./ImageDialog";
 
 interface data {
   rowKey: React.ReactNode;
@@ -25,6 +26,9 @@ export default function ProblemCard(props: {
   const [score, setScore] = useState(props.problem.Punctaj);
   const [stateOfProblem, setStateOfProblem] = useState(props.problem.Status);
   const { getUser, updateProblem } = Services();
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("");
+  const [images, setImages] = useState("ceva");
 
   const getData = async () => {
     const result = await getUser();
@@ -61,6 +65,26 @@ export default function ProblemCard(props: {
     updateProblem(data);
   }
 
+  const handleClose = (value: string) => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
+
+  function openGalery() {
+    setOpen(true);
+  }
+
+  const galery = () => {
+    return (
+      <ImageDialog
+        imgs={props.problem.Imagini}
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
+    );
+  };
+
   return (
     <div>
       <div className="card problemCard">
@@ -82,7 +106,10 @@ export default function ProblemCard(props: {
             </p>
           </div>
           <div className="img">
-            <img src={props.problem.Imagini[0].url}></img>
+            <img
+              src={props.problem.Imagini[0].url}
+              onClick={() => openGalery()}
+            ></img>
           </div>
         </div>
         <Button
@@ -148,6 +175,7 @@ export default function ProblemCard(props: {
           </div>
         </Collapse>
       </div>
+      {galery()}
     </div>
   );
 }
