@@ -3,105 +3,31 @@ import React, { useState } from "react";
 import "../Styles/LoginPage.css";
 import ProblemCard from "../Components/ProblemCard";
 import MapContainer from "../Components/Map";
-// import data from "../data.json";
 import { useEffect } from "react";
 import { Button } from "@material-ui/core";
-import Galery from "../Components/ImageDialog";
 import Services from "../Services/Services";
 import { data } from "../Services/Interfaces";
 
-const locations = [
-  {
-    name: "Gaura de canalizare",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget tortor ut leo pellentesque interdum et ut metus. Suspendisse facilisis eu ipsum id consectetur. ",
-    location: {
-      lat: 45.7494,
-      lng: 21.2272,
-    },
-  },
-  {
-    name: "Copac daramat",
-    description:
-      "Nam porta bibendum nibh, id sagittis lacus commodo et. Nullam venenatis orci eu accumsan interdum. ",
-    location: {
-      lat: 45.7484,
-      lng: 21.2472,
-    },
-  },
-  {
-    name: "Inundatie",
-    description:
-      " Aenean vitae nulla a nibh pellentesque dapibus. Aliquam lacinia volutpat blandit. ",
-    location: {
-      lat: 45.7594,
-      lng: 21.2372,
-    },
-  },
-  {
-    name: "Gaura de canalizare",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget tortor ut leo pellentesque interdum et ut metus. Suspendisse facilisis eu ipsum id consectetur. ",
-    location: {
-      lat: 45.7464,
-      lng: 21.2272,
-    },
-  },
-  {
-    name: "Gaura de canalizare",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget tortor ut leo pellentesque interdum et ut metus. Suspendisse facilisis eu ipsum id consectetur. ",
-    location: {
-      lat: 45.7498,
-      lng: 21.2272,
-    },
-  },
-  {
-    name: "Inundatie",
-    description:
-      " Aenean vitae nulla a nibh pellentesque dapibus. Aliquam lacinia volutpat blandit. ",
-    location: {
-      lat: 45.7594,
-      lng: 21.2372,
-    },
-  },
-  {
-    name: "Gaura de canalizare",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget tortor ut leo pellentesque interdum et ut metus. Suspendisse facilisis eu ipsum id consectetur. ",
-    location: {
-      lat: 45.7464,
-      lng: 21.2272,
-    },
-  },
-  {
-    name: "Gaura de canalizare",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget tortor ut leo pellentesque interdum et ut metus. Suspendisse facilisis eu ipsum id consectetur. ",
-    location: {
-      lat: 45.7498,
-      lng: 21.2272,
-    },
-  },
-];
 export default function AdminPage() {
   const [clickedLocation, setClickedLocation] = useState({
     lat: 45.7543,
     lng: 21.22709,
   });
   const [problems, setProblems] = useState([]);
+  const [refresh, setRefresh] = useState("");
   const [status, setStatus] = useState(false);
-  const { getUser, updateProblem } = Services();
+  const { getUser } = Services();
 
   const getProblems = async () => {
     const result = await getUser();
     setProblems(result.data);
+    setRefresh("a");
     //console.log("Data: " + JSON.stringify(result.data));
   };
 
   useEffect(() => {
     getProblems();
-  }, []);
+  }, [refresh]);
 
   function ShowLocation(location: any) {
     setClickedLocation(location);
@@ -110,15 +36,16 @@ export default function AdminPage() {
     if (status) {
       return (
         <div>
-          {problems.map((d: data) => {
-            if (d.status == "ToDo") {
+          {problems.map((d: data, key) => {
+            if (d.status == "Rezolvat") {
               //console.log(d.id);
               return (
-                <div key={Number(d.partitionKey)}>
+                <div key={key}>
                   <ProblemCard
                     sendLocation={(e: any) => ShowLocation(e)}
                     style="green"
                     problem={d}
+                    refresh={(e: any) => setRefresh(e)}
                   ></ProblemCard>
                 </div>
               );
@@ -129,26 +56,28 @@ export default function AdminPage() {
     } else {
       return (
         <div>
-          {problems.map((d: data) => {
-            if (d.status == "Nerezolvat") {
+          {problems.map((d: data, key) => {
+            if (d.status == "Nerezolvat" || d.status == "Anulat") {
               //console.log(d.id);
               return (
-                <div key={Number(d.partitionKey)}>
+                <div key={key}>
                   <ProblemCard
                     sendLocation={(e: any) => ShowLocation(e)}
                     style="red"
                     problem={d}
+                    refresh={(e: any) => setRefresh(e)}
                   ></ProblemCard>
                 </div>
               );
-            } else if (d.status == 0) {
+            } else if (d.status == "In desfasurare") {
               //console.log(d.id);
               return (
-                <div key={Number(d.partitionKey)}>
+                <div key={key}>
                   <ProblemCard
                     sendLocation={(e: any) => ShowLocation(e)}
                     style="orange"
                     problem={d}
+                    refresh={(e: any) => setRefresh(e)}
                   ></ProblemCard>
                 </div>
               );

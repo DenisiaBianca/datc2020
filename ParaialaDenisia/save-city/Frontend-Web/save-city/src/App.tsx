@@ -6,19 +6,15 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage";
 import AdminPage from "./Pages/AdminPage";
 import city from "./Images/city2.png";
-import Fade from "react-bootstrap/Fade";
-import Collapse from "react-bootstrap/Collapse";
-import { useState } from "react";
 
 function App() {
-  const [show, setShow] = useState(false);
   return (
     <Router>
       <div className="App">
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
             <Link className="navbar-brand" to={"/login"}>
-              <img src={city} />
+              <img src={city} alt="" />
               <h2 className="title">SaveCity</h2>
             </Link>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
@@ -34,7 +30,7 @@ function App() {
         </nav>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <Route path="/login" component={LoginPage} />
+          <Route exact path="/login" component={LoginPage} />
           <Route exact path="/admin" component={AdminPage} />
         </Switch>
       </div>

@@ -1,50 +1,27 @@
-import React, { CSSProperties, useEffect, useState } from "react";
+import React, { CSSProperties, useState } from "react";
 import "../Styles/LoginPage.css";
 import "../Styles/Card.css";
 import { Collapse } from "react-bootstrap";
-import { getDefaultSettings } from "http2";
 import Services from "../Services/Services";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ImageDialog from "./ImageDialog";
-import { data } from "../Services/Interfaces";
+import { useHistory } from "react-router-dom";
 
 export default function ProblemCard(props: {
   problem: any;
   style: string;
   sendLocation: any;
+  refresh: any;
 }) {
   const [show, setShow] = useState(false);
-  const [datas, setData] = useState([]);
   const [score, setScore] = useState(props.problem.punctaj);
   const [stateOfProblem, setStateOfProblem] = useState(props.problem.status);
-  const { getUser, updateProblem } = Services();
+  const { updateProblem } = Services();
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
-  const [images, setImages] = useState("ceva");
-
-  const getData = async () => {
-    const result = await getUser();
-    setData(result.data);
-    //console.log("Data: " + JSON.stringify(result.data));
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const status = () => {
-    if (stateOfProblem == 2) {
-      return "Rezolvat";
-    } else if (stateOfProblem == 1) {
-      return "Nerezolvat";
-    } else if (stateOfProblem == 3) {
-      return "Anulat";
-    } else {
-      return "In desfasurare";
-    }
-  };
+  const history = useHistory();
 
   const style: CSSProperties = {
     color: props.style,
@@ -52,9 +29,9 @@ export default function ProblemCard(props: {
 
   function SaveChanges() {
     const data = {
-      score: score,
-      state: stateOfProblem,
-      problemId: props.problem.id,
+      PartitionKey: props.problem.partitionKey,
+      RowKey: stateOfProblem,
+      punctaj: score,
     };
     updateProblem(data);
   }
@@ -99,7 +76,11 @@ export default function ProblemCard(props: {
             </p>
           </div>
           <div className="img">
-            <img src={props.problem.poza} onClick={() => openGalery()}></img>
+            <img
+              src={props.problem.poza}
+              onClick={() => openGalery()}
+              alt=""
+            ></img>
           </div>
         </div>
         <Button
@@ -128,14 +109,6 @@ export default function ProblemCard(props: {
                 onChange={(e, v) => setScore(v)}
               />
             </div>
-            {/* {datas.map((d: data, i: any) => (
-              <div key={i}>
-                <p>{d.rowKey}</p>
-                <p>{d.partitionKey}</p>
-                <p>{d.timestamp}</p>
-                <p>{d.eTag}</p>
-              </div>
-            ))} */}
             <div className="buttons">
               <Button
                 className="btn1"
@@ -159,7 +132,14 @@ export default function ProblemCard(props: {
                 Anulat
               </Button>
             </div>
-            <Button size="small" className="btn" onClick={() => SaveChanges()}>
+            <Button
+              size="small"
+              className="btn"
+              onClick={() => {
+                SaveChanges();
+                props.refresh("ceva");
+              }}
+            >
               Salveaza modificarile
             </Button>
           </div>

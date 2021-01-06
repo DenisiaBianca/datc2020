@@ -1,24 +1,41 @@
 // eslint-disable-next-line
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/LoginPage.css";
 import { useHistory } from "react-router-dom";
+import Services from "../Services/Services";
+import axios from "axios";
 
 export function LoginPage() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [loginData, setLoginData] = useState({ PartitionKey: "", RowKey: "" });
+  const [login, setLogin] = useState(true);
   const history = useHistory();
+  const { Login } = Services();
 
   function LoginClick() {
     console.log("Try to login");
     console.log(userName);
     console.log(password);
-    if (userName === "denisia@mail" && password === "12345") {
-      history.push("admin");
-    } else {
-      console.log("gresit");
-      alert("nereusit");
-    }
+    tryToLogin();
+    if (login) history.push("/admin");
+    else alert("parola grasita");
   }
+
+  const tryToLogin = async () => {
+    const data = {
+      PartitionKey: userName,
+      RowKey: password,
+    };
+    await axios
+      .post("https://l05.azurewebsites.net/Administratori/LogIn", data)
+      .then((response) => response)
+      .then((json) => {
+        console.log(json.data);
+        setLogin(json.data);
+        return json.data;
+      });
+  };
 
   return (
     <div className="outer">
@@ -42,6 +59,7 @@ export function LoginPage() {
               type="password"
               className="form-control"
               placeholder="Enter password"
+              autoComplete={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>

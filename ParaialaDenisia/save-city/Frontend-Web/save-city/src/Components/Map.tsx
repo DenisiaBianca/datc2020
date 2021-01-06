@@ -1,9 +1,6 @@
 // eslint-disable-next-line
 import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
-import React, { useEffect } from "react";
 import { Marker } from "react-google-maps";
-import { useState } from "react";
-import { Console } from "console";
 
 export const MapContainer = (props: { loc: any }) => {
   const clickedLocation = props.loc;

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { Dialog, DialogTitle, Typography, Button } from "@material-ui/core";
-import { AnyNaptrRecord } from "dns";
+import { Dialog, DialogTitle } from "@material-ui/core";
 import { Carousel } from "react-bootstrap";
 import "../Styles/Galery.css";
 
@@ -21,10 +20,6 @@ export default function ImageDialog(props: any) {
     onClose(selectedValue);
   };
 
-  const handleListItemClick = (value: string) => {
-    onClose(value);
-  };
-
   return (
     <Dialog
       onClose={handleClose}
@@ -36,7 +31,10 @@ export default function ImageDialog(props: any) {
         {/* {imgs.map((i: any, key: any) => { */}
         {/* return ( */}
         <Carousel.Item>
-          <img className="d-block w-100 images" src={imgs} />
+          <img className="d-block w-100 images" src={imgs} alt="" />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100 images" src={imgs} alt="" />
         </Carousel.Item>
         {/* ); */}
         {/* })} */}
@@ -44,30 +42,3 @@ export default function ImageDialog(props: any) {
     </Dialog>
   );
 }
-
-// export default function Galery() {
-//   const [open, setOpen] = React.useState(false);
-//   const [selectedValue, setSelectedValue] = React.useState("");
-
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
-
-//   const handleClose = (value: string) => {
-//     setOpen(false);
-//     setSelectedValue(value);
-//   };
-
-//   return (
-//     <div>
-//       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-//         Open simple dialog
-//       </Button>
-//       <ImageDialog
-//         selectedValue={selectedValue}
-//         open={open}
-//         onClose={handleClose}
-//       />
-//     </div>
-//   );
-// }
